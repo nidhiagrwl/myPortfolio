@@ -8,55 +8,49 @@ export function ThemeToggle() {
   const isDark = theme === "dark";
 
   return (
-    <button
+    <motion.button
       type="button"
       onClick={toggle}
       aria-label="Toggle light and dark mode"
-      className="relative flex h-9 w-16 items-center rounded-full border border-border-light bg-surface-light/90 px-1 text-xs text-text-mutedLight shadow-sm transition-colors hover:border-accent hover:bg-accent-soft dark:border-border-dark dark:bg-surface-dark/90 dark:text-text-dark"
+      className="relative flex h-9 w-16 items-center rounded-full border border-slate-300 bg-slate-100 px-1 shadow-sm transition-all duration-300 hover:border-emerald-400/60 hover:shadow-md dark:border-slate-600 dark:bg-slate-800 dark:hover:border-emerald-400/50"
+      whileTap={{ scale: 0.97 }}
+      transition={{ duration: 0.3 }}
     >
       <motion.div
         layout
         style={{ x: isDark ? 28 : 0 }}
         transition={{ type: "spring", stiffness: 320, damping: 26 }}
-        className="relative flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-tr from-accent to-emerald-400 shadow-[0_0_0_1px_rgba(16,185,129,0.4)]"
+        className="relative flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-tr from-emerald-500 to-emerald-400 shadow-md"
       >
         <AnimatePresence initial={false} mode="wait">
           {isDark ? (
             <motion.span
               key="moon"
-              initial={{ opacity: 0, rotate: -45, scale: 0.7 }}
+              initial={{ opacity: 0, rotate: -90, scale: 0.7 }}
               animate={{ opacity: 1, rotate: 0, scale: 1 }}
-              exit={{ opacity: 0, rotate: 45, scale: 0.7 }}
-              transition={{ duration: 0.22 }}
+              exit={{ opacity: 0, rotate: 90, scale: 0.7 }}
+              transition={{ duration: 0.25 }}
               aria-hidden="true"
+              className="text-white text-sm"
             >
               ☾
             </motion.span>
           ) : (
             <motion.span
               key="sun"
-              initial={{ opacity: 0, rotate: 45, scale: 0.7 }}
+              initial={{ opacity: 0, rotate: 90, scale: 0.7 }}
               animate={{ opacity: 1, rotate: 0, scale: 1 }}
-              exit={{ opacity: 0, rotate: -45, scale: 0.7 }}
-              transition={{ duration: 0.22 }}
+              exit={{ opacity: 0, rotate: -90, scale: 0.7 }}
+              transition={{ duration: 0.25 }}
               aria-hidden="true"
+              className="text-white text-sm"
             >
               ☼
             </motion.span>
           )}
         </AnimatePresence>
       </motion.div>
-      <motion.span
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 rounded-full"
-        animate={{
-          boxShadow: isDark
-            ? "0 0 18px rgba(16,185,129,0.4)"
-            : "0 0 12px rgba(56,189,248,0.25)"
-        }}
-        transition={{ duration: 0.25 }}
-      />
-    </button>
+    </motion.button>
   );
 }
 

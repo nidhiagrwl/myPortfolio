@@ -8,7 +8,7 @@ export const transitionFast: Transition = {
 };
 
 export const fadeInUp: Variants = {
-  hidden: { opacity: 0, y: 16 },
+  hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0 }
 };
 

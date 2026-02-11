@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="min-h-screen bg-bg-light text-text-light antialiased dark:bg-bg-dark dark:text-text-dark">
+      <body className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-indigo-50 text-slate-900 antialiased dark:bg-gradient-to-br dark:from-slate-950 dark:via-slate-900 dark:to-indigo-950 dark:text-slate-100">
         <ThemeProvider>
           <Header />
           <main>
@@ -39,7 +39,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <footer className="border-t border-border-light/70 py-6 text-xs text-text-mutedLight dark:border-border-dark/70 dark:text-text-mutedDark">
             <Container className="flex flex-col items-center justify-between gap-2 sm:flex-row">
               <p>© {new Date().getFullYear()} Nidhi Agrawal. All rights reserved.</p>
-              <p>Built with Next.js, TypeScript & Tailwind CSS.</p>
+              <p>Designed & built with ❤️.</p>
             </Container>
           </footer>
         </ThemeProvider>

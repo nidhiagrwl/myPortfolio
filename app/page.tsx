@@ -176,31 +176,15 @@ function Hero({ onViewResume }: { onViewResume: () => void }) {
               <span className="hidden h-1 w-1 align-middle rounded-full bg-text-mutedLight sm:inline-block" />
               <span>Client-facing · Owns ambiguity · Leads cross-functional work</span>
             </div>
-            <div className="mt-6 flex flex-wrap items-center gap-4 text-xs text-text-mutedLight dark:text-text-mutedDark">
-              <span className="font-medium text-text-mutedLight dark:text-text-mutedDark">
+            <div className="mt-6 flex flex-wrap items-center gap-4 text-xs text-slate-600 dark:text-slate-400">
+              <span className="font-medium">
                 Let&apos;s connect
               </span>
               <div className="flex gap-3">
-                <SocialIcon
-                  label="Email"
-                  href="mailto:your.email@example.com"
-                  icon={<MailIcon />}
-                />
-                <SocialIcon
-                  label="LinkedIn"
-                  href="https://www.linkedin.com/in/nidhi-agrawal"
-                  icon={<LinkedInIcon />}
-                />
-                <SocialIcon
-                  label="GitHub"
-                  href="https://github.com/yourusername"
-                  icon={<GithubIcon />}
-                />
-                <SocialIcon
-                  label="Phone"
-                  href="tel:+91XXXXXXXXXX"
-                  icon={<PhoneIcon />}
-                />
+                <SocialIcon brand="email" label="Email" href="mailto:nidhiagrawal.career@gmail.com" icon={<MailIcon />} />
+                <SocialIcon brand="linkedin" label="LinkedIn" href="https://www.linkedin.com/in/nidhi-agrawal-b5a73b151/" icon={<LinkedInIcon />} />
+                <SocialIcon brand="github" label="GitHub" href="https://github.com/nidhiagrwl" icon={<GithubIcon />} />
+                <SocialIcon brand="phone" label="Phone" href="tel:+918770603916" icon={<PhoneIcon />} />
               </div>
             </div>
           </motion.div>
@@ -214,12 +198,18 @@ function Hero({ onViewResume }: { onViewResume: () => void }) {
                 className="relative"
                 animate={{ y: [0, -6, 0] }}
                 transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                whileHover={{
+                  scale: 1.05,
+                  rotate: 1,
+                  transition: { duration: 0.3 },
+                  boxShadow: "0 0 40px rgba(16, 185, 129, 0.25)"
+                }}
               >
-                <div className="rounded-full bg-gradient-to-tr from-accent to-emerald-500 p-[3px]">
+                <div className="rounded-full bg-gradient-to-tr from-accent to-emerald-500 p-[3px] shadow-lg">
                   <img
                     src="/profile.jpeg"
                     alt="Portrait of Nidhi Agrawal"
-                    className="h-32 w-32 rounded-full border border-border-light bg-surface-light object-cover transition-transform duration-300 ease-out hover:scale-[1.03] dark:border-border-dark dark:bg-surface-dark sm:h-40 sm:w-40"
+                    className="h-40 w-40 rounded-full border-2 border-white object-cover dark:border-slate-700 sm:h-48 sm:w-48"
                   />
                 </div>
               </motion.div>
@@ -674,91 +664,82 @@ function Experience() {
 
       {/* Company 2 – Previous Organization #1 */}
       <AnimatedSection>
-        <Card className="p-5 sm:p-6">
-        <div className="mb-3 flex items-center gap-2">
-          <BriefcaseIcon />
-          <span className="text-xs font-semibold uppercase tracking-[0.18em] text-text-mutedLight dark:text-text-mutedDark">
-            Previous Organization #1
-          </span>
-        </div>
-        <div className="flex flex-wrap items-baseline justify-between gap-3">
-            <div>
-              <h3 className="text-base font-semibold">Backend Engineer · Previous Organization #1</h3>
-              <p className="mt-1 text-xs text-text-mutedLight dark:text-text-mutedDark">
-                2018 – 2020 · 2+ years
-              </p>
-            </div>
-            <Badge>APIs · Databases · System Design</Badge>
-          </div>
-          <p className="mt-4 text-sm text-text-mutedLight dark:text-text-mutedDark">
-            Joined as a backend engineer responsible for designing and scaling core APIs, working
-            closely with product and frontend teams to keep delivery predictable and systems stable
-            in production.
-          </p>
-          <ul className="mt-4 space-y-2.5 text-sm text-text-mutedLight dark:text-text-mutedDark">
-            <li>
-              • Designed and implemented RESTful APIs for core product workflows, focusing on clear
-              contracts, versioning, and observability from day one.
-            </li>
-            <li>
-              • Led database schema design for new modules, including indexing strategy and migration
-              plans that avoided downtime during high-traffic periods.
-            </li>
-            <li>
-              • Introduced structured logging and basic alerting on key endpoints, which shortened
-              the feedback loop for production issues.
-            </li>
-            <li>
-              • Collaborated closely with frontend, QA, and product to break down ambiguous
-              requirements into deliverables that were easy to test and release.
-            </li>
-            <li>
-              • Participated in on-call rotations and incident reviews, contributing fixes and
-              follow-up improvements to reduce repeat incidents.
-            </li>
-          </ul>
-        </Card>
-      </AnimatedSection>
+  <Card className="p-5 sm:p-6">
+    <div className="mb-3 flex items-center gap-2">
+      <BriefcaseIcon />
+      <span className="text-xs font-semibold uppercase tracking-[0.18em] text-text-mutedLight dark:text-text-mutedDark">
+        BYJU&apos;s
+      </span>
+    </div>
+    <div className="flex flex-wrap items-baseline justify-between gap-3">
+      <div>
+        <h3 className="text-base font-semibold">Product Manager (Tech)</h3>
+        <p className="mt-1 text-xs text-text-mutedLight dark:text-text-mutedDark">
+          2018 – 2020 · 2+ years
+        </p>
+      </div>
+      <Badge>Platform Management · Product Delivery · Workflow Optimization</Badge>
+    </div>
+    <p className="mt-4 text-sm text-text-mutedLight dark:text-text-mutedDark">
+      Managed the <strong>NEO tutor platform</strong>, driving <strong>pre-session workflows, lesson preparation</strong>, and <strong>documentation systems</strong> across live classes. Partnered with engineering, design, and QA to deliver features end-to-end, ensuring smooth operations and enhanced user experience.
+    </p>
+    <ul className="mt-4 space-y-2.5 text-sm text-text-mutedLight dark:text-text-mutedDark">
+      <li>
+        • Translated tutor and academic requirements into <strong>clear product specifications</strong>, collaborating with cross-functional teams for timely delivery.
+      </li>
+      <li>
+        • Oversaw <strong>live session operations</strong>, monitoring tutor readiness, participant engagement, and session health in real time.
+      </li>
+      <li>
+        • Improved <strong>content workflows and tutor experience</strong>, reducing preparation time and boosting platform adoption.
+      </li>
+      <li>
+        • Coordinated with academics, operations, and tech leadership to <strong>prioritize roadmap items</strong> and enhance overall user experience.
+      </li>
+    </ul>
+  </Card>
+</AnimatedSection>
+
+
 
       {/* Company 3 – Previous Organization #2 (concise but strong) */}
       <AnimatedSection>
-        <Card className="p-5 sm:p-6">
-          <div className="mb-3 flex items-center gap-2">
-            <BriefcaseIcon />
-            <span className="text-xs font-semibold uppercase tracking-[0.18em] text-text-mutedLight dark:text-text-mutedDark">
-              Previous Organization #2
-            </span>
-          </div>
-          <div className="flex flex-wrap items-baseline justify-between gap-3">
-            <div>
-              <h3 className="text-base font-semibold">Software Engineer · Previous Organization #2</h3>
-              <p className="mt-1 text-xs text-text-mutedLight dark:text-text-mutedDark">
-                2016 – 2018 · 2 years
-              </p>
-            </div>
-            <Badge>Foundations · Production Readiness</Badge>
-          </div>
-          <p className="mt-4 text-sm text-text-mutedLight dark:text-text-mutedDark">
-            Early-career role focused on building reliable backend services, learning how production
-            systems behave under real usage, and developing a bias towards simplicity and clarity in
-            design.
-          </p>
-          <ul className="mt-4 space-y-2.5 text-sm text-text-mutedLight dark:text-text-mutedDark">
-            <li>
-              • Implemented features across the backend stack, from controllers to data access,
-              under close code review, building strong engineering fundamentals.
-            </li>
-            <li>
-              • Helped debug and fix production defects, gaining hands-on experience in tracing,
-              logging, and safe rollouts.
-            </li>
-            <li>
-              • Contributed to internal documentation and onboarding materials, making it easier for
-              new engineers to understand the system.
-            </li>
-          </ul>
-        </Card>
-      </AnimatedSection>
+  <Card className="p-5 sm:p-6">
+    <div className="mb-3 flex items-center gap-2">
+      <BriefcaseIcon />
+      <span className="text-xs font-semibold uppercase tracking-[0.18em] text-text-mutedLight dark:text-text-mutedDark">
+        Tata Consultancy Services
+      </span>
+    </div>
+    <div className="flex flex-wrap items-baseline justify-between gap-3">
+      <div>
+        <h3 className="text-base font-semibold">Assistant System Engineer</h3>
+        <p className="mt-1 text-xs text-text-mutedLight dark:text-text-mutedDark">
+          2016 – 2018 · 2 years
+        </p>
+      </div>
+      <Badge>Java · Financial Systems · API Integration</Badge>
+    </div>
+    <p className="mt-4 text-sm text-text-mutedLight dark:text-text-mutedDark">
+      Worked as a <strong>Junior Java Developer</strong> on <strong>Project VIVEK</strong> for State Bank of India (SBI), contributing to <strong>loan processing</strong> and <strong>customer verification systems</strong>. Collaborated with client teams to deliver secure and compliant financial workflows end-to-end.
+    </p>
+    <ul className="mt-4 space-y-2.5 text-sm text-text-mutedLight dark:text-text-mutedDark">
+      <li>
+        • Implemented <strong>PAN verification</strong>, <strong>CIBIL score checks</strong>, and <strong>financial eligibility calculations</strong> by integrating secure government APIs.
+      </li>
+      <li>
+        • Collaborated with <strong>on-site client teams</strong> to gather requirements, resolve production issues, and deliver enhancements quickly.
+      </li>
+      <li>
+        • Contributed to the <strong>NPS (National Pension System)</strong> development, implementing secure <strong>OTP authentication workflows</strong> for email and mobile.
+      </li>
+      <li>
+        • Supported backend services, performed <strong>debugging</strong>, and ensured <strong>stability and compliance</strong> of critical financial workflows.
+      </li>
+    </ul>
+  </Card>
+</AnimatedSection>
+
     </div>
   );
 }
@@ -893,7 +874,7 @@ function Awards({ onOpenImage }: { onOpenImage: (src: string | null) => void }) 
           ))}
         </div>
         <p className="mt-2 text-xs text-text-mutedLight dark:text-text-mutedDark">
-          Replace these placeholders with actual screenshots from email, Slack, or internal tools.
+        Screenshots of appreciation messages and recognition received for ownership, delivery quality, and impact.
         </p>
         </div>
       </AnimatedSection>
@@ -939,39 +920,25 @@ function ResumeSection({ onOpen }: { onOpen: () => void }) {
 function Contact() {
   return (
     <AnimatedSection>
-      <Card className="p-5 sm:p-6">
-      <div className="mb-2 flex items-center gap-2">
-        <MailIcon />
-        <h3 className="text-sm font-semibold">Let&apos;s talk</h3>
-      </div>
-      <p className="text-sm text-text-mutedLight dark:text-text-mutedDark">
-        I&apos;m open to senior backend roles, staff-track opportunities, and selective consulting /
-        fractional ownership work.
-      </p>
-      <div className="mt-4 flex flex-wrap items-center gap-4">
-        <div className="flex flex-wrap gap-3">
-          <SocialIcon
-            label="Email"
-            href="mailto:your.email@example.com"
-            icon={<MailIcon />}
-          />
-          <SocialIcon
-            label="LinkedIn"
-            href="https://www.linkedin.com/in/nidhi-agrawal"
-            icon={<LinkedInIcon />}
-          />
-          <SocialIcon
-            label="GitHub"
-            href="https://github.com/yourusername"
-            icon={<GithubIcon />}
-          />
-          <SocialIcon
-            label="Phone"
-            href="tel:+91XXXXXXXXXX"
-            icon={<PhoneIcon />}
-          />
+      <Card className="overflow-hidden p-0">
+        <div className="bg-gradient-to-br from-indigo-50/80 via-white to-sky-50/80 dark:from-slate-800/80 dark:via-slate-800 dark:to-slate-900/80 p-5 sm:p-6">
+          <div className="mb-2 flex items-center gap-2">
+            <MailIcon />
+            <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-100">Let&apos;s talk</h3>
+          </div>
+          <p className="text-sm text-slate-600 dark:text-slate-400">
+            I&apos;m open to senior backend roles, staff-track opportunities, and selective consulting /
+            fractional ownership work.
+          </p>
+          <div className="mt-6 flex flex-wrap items-center gap-4">
+            <div className="flex flex-wrap gap-4">
+          <SocialIcon brand="email" label="Email" href="mailto:nidhiagrawal.career@gmail.com" icon={<MailIcon />} />
+          <SocialIcon brand="linkedin" label="LinkedIn" href="https://www.linkedin.com/in/nidhi-agrawal-b5a73b151/" icon={<LinkedInIcon />} />
+          <SocialIcon brand="github" label="GitHub" href="https://github.com/nidhiagrwl" icon={<GithubIcon />} />
+          <SocialIcon brand="phone" label="Phone" href="tel:+918770603916" icon={<PhoneIcon />} />
+            </div>
+          </div>
         </div>
-      </div>
       </Card>
     </AnimatedSection>
   );
@@ -1055,26 +1022,37 @@ function ResumeIcon() {
   );
 }
 
-// Simple inline icons to avoid extra dependencies
+const brandStyles: Record<string, { bg: string; hover: string; darkBg: string; darkHover: string }> = {
+  email: { bg: "bg-red-500/10", hover: "hover:bg-red-500/20 hover:border-red-500/50 hover:text-red-600", darkBg: "dark:bg-red-400/10", darkHover: "dark:hover:bg-red-400/20 dark:hover:border-red-400/50 dark:hover:text-red-400" },
+  linkedin: { bg: "bg-[#0a66c2]/10", hover: "hover:bg-[#0a66c2]/20 hover:border-[#0a66c2]/50 hover:text-[#0a66c2]", darkBg: "dark:bg-[#0a66c2]/20", darkHover: "dark:hover:bg-[#0a66c2]/30 dark:hover:border-[#0a66c2]/60 dark:hover:text-[#60a5fa]" },
+  github: { bg: "bg-slate-700/10", hover: "hover:bg-slate-700/20 hover:border-slate-600 hover:text-slate-800", darkBg: "dark:bg-slate-400/10", darkHover: "dark:hover:bg-slate-400/20 dark:hover:border-slate-400/50 dark:hover:text-slate-300" },
+  phone: { bg: "bg-emerald-500/10", hover: "hover:bg-emerald-500/20 hover:border-emerald-500/50 hover:text-emerald-600", darkBg: "dark:bg-emerald-400/10", darkHover: "dark:hover:bg-emerald-400/20 dark:hover:border-emerald-400/50 dark:hover:text-emerald-400" }
+};
+
 function SocialIcon({
   label,
   href,
-  icon
+  icon,
+  brand = "email"
 }: {
   label: string;
   href: string;
   icon: JSX.Element;
+  brand?: keyof typeof brandStyles;
 }) {
+  const s = brandStyles[brand] || brandStyles.email;
   return (
-    <a
+    <motion.a
       href={href}
       aria-label={label}
       target={href.startsWith("http") ? "_blank" : undefined}
       rel={href.startsWith("http") ? "noreferrer" : undefined}
-      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border-light text-text-mutedLight transition hover:border-accent hover:text-accent dark:border-border-dark dark:text-text-mutedDark dark:hover:border-accent"
+      className={`inline-flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-300 ${s.bg} ${s.hover} ${s.darkBg} ${s.darkHover} border-slate-300/80 text-slate-600 dark:border-slate-600 dark:text-slate-400`}
+      whileHover={{ scale: 1.15, y: -4, boxShadow: "0 8px 20px rgba(0,0,0,0.12)" }}
+      whileTap={{ scale: 0.98 }}
     >
       {icon}
-    </a>
+    </motion.a>
   );
 }
 

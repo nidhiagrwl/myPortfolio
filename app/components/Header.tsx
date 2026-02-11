@@ -6,13 +6,12 @@ import { ThemeToggle } from "./ThemeToggle";
 import { useActiveSection } from "./useActiveSection";
 
 const links = [
+  { href: "/#hero", id: "hero", label: "Home" },
   { href: "/#about", id: "about", label: "About" },
   { href: "/#skills", id: "skills", label: "Skills" },
-  { href: "/#experience", id: "experience", label: "Experience" },
-  { href: "/beyond", id: "beyond", label: "Beyond Code" },
   { href: "/#projects", id: "projects", label: "Projects" },
-  { href: "/#awards", id: "awards", label: "Awards" },
   { href: "/#resume", id: "resume", label: "Resume" },
+  { href: "/beyond", id: "beyond", label: "Beyond Code" },
   { href: "/#contact", id: "contact", label: "Contact" }
 ];
 
@@ -20,7 +19,7 @@ export function Header() {
   const activeId = useActiveSection();
 
   return (
-    <header className="sticky top-0 z-30 border-b border-border-light/70 bg-bg-light/80 backdrop-blur-md dark:border-border-dark/70 dark:bg-bg-dark/80">
+    <header className="sticky top-0 z-30 border-b border-slate-200/80 bg-white/80 backdrop-blur-md dark:border-slate-700/80 dark:bg-slate-950/80">
       <Container className="flex items-center justify-between py-3 sm:py-4">
         <a href="/#hero" className="flex items-center gap-2">
           <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-accent text-xs font-semibold text-white dark:bg-accent">
@@ -28,7 +27,7 @@ export function Header() {
           </div>
           <div>
             <p className="text-sm font-semibold">Nidhi Agrawal</p>
-            <p className="text-xs text-text-mutedLight dark:text-text-mutedDark">
+            <p className="text-xs text-slate-500 dark:text-slate-400">
               Senior Software Engineer
             </p>
           </div>
@@ -43,8 +42,8 @@ export function Header() {
                 className={clsx(
                   "relative pb-1 transition-colors",
                   isActive
-                    ? "text-text-light dark:text-text-dark"
-                    : "text-text-mutedLight dark:text-text-mutedDark hover:text-text-light dark:hover:text-text-dark"
+                    ? "text-slate-900 dark:text-slate-100"
+                    : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100"
                 )}
               >
                 {link.label}

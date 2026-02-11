@@ -13,15 +13,23 @@ export function Card({
 }) {
   return (
     <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 2, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       whileHover={{
-        scale: 1.02,
-        boxShadow: "0 20px 50px rgba(16, 185, 129, 0.15), 0 0 0 1px rgba(16, 185, 129, 0.2)",
-        transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] }
+        y: -6,
+        scale: 1.01,
+        boxShadow: "0 10px 30px rgba(16,185,129,0.12)",
+        borderColor: "rgba(16,185,129,0.4)",
+        transition: { duration: 0.25 }
       }}
+      
       className={clsx(
-        "rounded-2xl border border-border-light/70 bg-surface-light/80 shadow-subtle backdrop-blur-sm",
-        "dark:border-border-dark dark:bg-surface-dark/90",
-        "transition-all duration-300",
+        "rounded-2xl transition-all duration-300",
+        "bg-gradient-to-br from-slate-50/95 via-white to-indigo-50/80 border border-slate-200/80",
+        "dark:bg-gradient-to-br dark:from-slate-800/95 dark:via-slate-800 dark:to-slate-900 dark:border-slate-700",
+        "shadow-sm",
         className
       )}
     >
@@ -29,5 +37,3 @@ export function Card({
     </motion.div>
   );
 }
-
-

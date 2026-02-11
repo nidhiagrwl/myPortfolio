@@ -1,9 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Card } from "./Card";
-import { fadeInUp, scaleOnHover } from "./motionPresets";
+import { motion } from "framer-motion";
+import { fadeInUp } from "./motionPresets";
 
 type Project = {
   title: string;
@@ -12,7 +10,6 @@ type Project = {
   architecture: string;
   stack: string[];
   impact: string;
-  details?: string[];
 };
 
 function ProjectIcon() {
@@ -36,101 +33,67 @@ function ProjectIcon() {
 }
 
 export function ProjectCard({ project, index }: { project: Project; index: number }) {
-  const [open, setOpen] = useState(false);
-
   return (
     <motion.div
       variants={fadeInUp}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: 0.4, delay: index * 0.05 }}
+      transition={{ duration: 0.65, delay: index * 0.05 }}
     >
-      <Card className="relative flex h-full flex-col overflow-hidden border-border-light/80 bg-card-gradient dark:border-border-dark/80">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(16,185,129,0.12),transparent_55%),radial-gradient(circle_at_100%_100%,rgba(56,189,248,0.12),transparent_55%)] opacity-70" />
-          <div className="relative z-10 p-5 sm:p-6">
-            <div className="mb-3 flex items-center gap-2">
-              <ProjectIcon />
-              <h3 className="text-sm font-semibold">{project.title}</h3>
-            </div>
-
-            <p className="mt-2 text-xs uppercase tracking-[0.18em] text-text-mutedLight dark:text-text-mutedDark">
-              Problem
-            </p>
-            <p className="mt-1 text-sm text-text-mutedLight dark:text-text-mutedDark">
-              {project.problem}
-            </p>
-
-            <p className="mt-3 text-xs uppercase tracking-[0.18em] text-text-mutedLight dark:text-text-mutedDark">
-              What I built
-            </p>
-            <p className="mt-1 text-sm text-text-mutedLight dark:text-text-mutedDark">
-              {project.built}
-            </p>
-
-            <p className="mt-3 text-xs uppercase tracking-[0.18em] text-text-mutedLight dark:text-text-mutedDark">
-              Architecture
-            </p>
-            <p className="mt-1 text-sm text-text-mutedLight dark:text-text-mutedDark">
-              {project.architecture}
-            </p>
-
-            <p className="mt-3 text-xs uppercase tracking-[0.18em] text-text-mutedLight dark:text-text-mutedDark">
-              Tech stack
-            </p>
-            <div className="mt-1 flex flex-wrap gap-1.5">
-              {project.stack.map(tech => (
-                <span
-                  key={tech}
-                  className="rounded-full bg-surface-light/80 px-2.5 py-1 text-[0.7rem] font-medium text-text-mutedLight shadow-sm dark:bg-surface-dark/80 dark:text-text-mutedDark"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-
-            <p className="mt-3 text-xs uppercase tracking-[0.18em] text-text-mutedLight dark:text-text-mutedDark">
-              Business impact
-            </p>
-            <p className="mt-1 text-sm text-text-mutedLight dark:text-text-mutedDark">
-              {project.impact}
-            </p>
-
-            <button
-              type="button"
-              onClick={() => setOpen(prev => !prev)}
-              className="mt-4 inline-flex items-center gap-1 text-xs font-medium text-accent transition hover:text-emerald-300"
-            >
-              <span>{open ? "Hide details" : "View details"}</span>
-              <motion.span
-                aria-hidden="true"
-                animate={{ rotate: open ? 180 : 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                ▾
-              </motion.span>
-            </button>
-
-            <AnimatePresence initial={false}>
-              {open && project.details && project.details.length > 0 && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0, y: -4 }}
-                  animate={{ opacity: 1, height: "auto", y: 0 }}
-                  exit={{ opacity: 0, height: 0, y: -4 }}
-                  transition={{ duration: 0.22 }}
-                  className="mt-3 border-t border-border-light/50 pt-3 text-xs text-text-mutedLight dark:border-border-dark/60 dark:text-text-mutedDark"
-                >
-                  <ul className="space-y-1.5">
-                    {project.details.map(line => (
-                      <li key={line}>• {line}</li>
-                    ))}
-                  </ul>
-                </motion.div>
-              )}
-            </AnimatePresence>
+      <motion.div
+        className="relative flex h-full flex-col overflow-hidden p-5 sm:p-6 rounded-2xl shadow-md bg-gradient-to-br from-indigo-50 via-white to-sky-50 text-slate-800 dark:bg-gradient-to-br dark:from-slate-800 dark:to-slate-900 dark:border dark:border-slate-700 dark:text-slate-100 transition-all duration-300"
+        whileHover={{ scale: 1.02, boxShadow: "0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1)" }}
+      >
+        <div className="relative z-10">
+          <div className="mb-3 flex items-center gap-2">
+            <ProjectIcon />
+            <h3 className="text-sm font-semibold">{project.title}</h3>
           </div>
-        </Card>
+
+          <p className="mt-2 text-xs uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
+            Problem
+          </p>
+          <p className="mt-1 text-sm text-slate-700 dark:text-slate-300">
+            {project.problem}
+          </p>
+
+          <p className="mt-3 text-xs uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
+            What I built
+          </p>
+          <p className="mt-1 text-sm text-slate-700 dark:text-slate-300">
+            {project.built}
+          </p>
+
+          <p className="mt-3 text-xs uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
+            Architecture
+          </p>
+          <p className="mt-1 text-sm text-slate-700 dark:text-slate-300">
+            {project.architecture}
+          </p>
+
+          <p className="mt-3 text-xs uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
+            Tech stack
+          </p>
+          <div className="mt-1 flex flex-wrap gap-1.5">
+            {project.stack.map(tech => (
+              <span
+                key={tech}
+                className="rounded-full bg-white/80 px-2.5 py-1 text-[0.7rem] font-medium text-slate-600 shadow-sm dark:bg-slate-700/80 dark:text-slate-300 border border-slate-200 dark:border-slate-600"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+
+          <p className="mt-3 text-xs uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
+            Business impact
+          </p>
+          <p className="mt-1 text-sm text-slate-700 dark:text-slate-300">
+            {project.impact}
+          </p>
+        </div>
+      </motion.div>
     </motion.div>
   );
 }
-
