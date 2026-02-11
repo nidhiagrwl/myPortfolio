@@ -585,7 +585,7 @@ function Experience() {
         </div>
         <div className="flex flex-wrap items-baseline justify-between gap-3">
           <div>
-              <h3 className="text-base font-semibold">Senior Backend Engineer / Tech Lead · JobTwine</h3>
+              <h3 className="text-base font-semibold">Software Engineer - Backend· JobTwine</h3>
             <p className="mt-1 text-xs text-text-mutedLight dark:text-text-mutedDark">
               Jan 2021 – Present · 3.5+ years
             </p>
