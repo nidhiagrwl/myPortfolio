@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light dark;
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-bg-light text-text-light;
+}
+
+.dark body {
+  @apply bg-bg-dark text-text-dark;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  @apply tracking-tight;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #9ca3af transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #9ca3af;
+  border-radius: 999px;
+}
+
+:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+
