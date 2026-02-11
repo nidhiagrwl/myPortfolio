@@ -194,25 +194,26 @@ function Hero({ onViewResume }: { onViewResume: () => void }) {
             transition={{ duration: 0.5, delay: 0.12, ease: [0.24, 1, 0.32, 1] }}
           >
             <div className="flex flex-col items-center gap-5">
-              <motion.div
-                className="relative"
-                animate={{ y: [0, -6, 0] }}
-                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                whileHover={{
-                  scale: 1.05,
-                  rotate: 1,
-                  transition: { duration: 0.3 },
-                  boxShadow: "0 0 40px rgba(16, 185, 129, 0.25)"
-                }}
-              >
-                <div className="rounded-full bg-gradient-to-tr from-accent to-emerald-500 p-[3px] shadow-lg">
-                  <img
-                    src="/profile.jpeg"
-                    alt="Portrait of Nidhi Agrawal"
-                    className="h-40 w-40 rounded-full border-2 border-white object-cover dark:border-slate-700 sm:h-48 sm:w-48"
-                  />
-                </div>
-              </motion.div>
+            <motion.div
+  whileHover={{
+    scale: 1.05,
+    rotate: 1,
+    boxShadow: "0 0 40px rgba(16, 185, 129, 0.25)",
+    transition: { duration: 0.3 },
+  }}
+  className="rounded-full p-[3px] bg-gradient-to-tr from-accent to-emerald-500 shadow-lg"
+>
+  <img
+    src="/profile.jpeg"
+    alt="Portrait of Nidhi Agrawal"
+    className="h-40 w-40 sm:h-48 sm:w-48 rounded-full border-2 border-white object-cover dark:border-slate-700"
+  />
+</motion.div>
+
+
+
+
+
               <Card className="w-full max-w-sm p-4 text-sm">
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-text-mutedLight dark:text-text-mutedDark">
                   Quick facts
@@ -585,7 +586,7 @@ function Experience() {
         </div>
         <div className="flex flex-wrap items-baseline justify-between gap-3">
           <div>
-              <h3 className="text-base font-semibold">Software Engineer - Backend· JobTwine</h3>
+              <h3 className="text-base font-semibold">Software Engineer - Backend · JobTwine</h3>
             <p className="mt-1 text-xs text-text-mutedLight dark:text-text-mutedDark">
               Jan 2021 – Present · 3.5+ years
             </p>
