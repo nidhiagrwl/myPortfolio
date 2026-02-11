@@ -14,7 +14,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$myPortfolio$2f$node_modules$
 function Section({ id, title, eyebrow, children, className }) {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$myPortfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
         id: id,
-        className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$myPortfolio$2f$node_modules$2f$clsx$2f$dist$2f$clsx$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])("scroll-mt-24 border-t border-border-light/60 bg-bg-light py-14 sm:py-20", "dark:border-border-dark/60 dark:bg-bg-dark", className),
+        className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$myPortfolio$2f$node_modules$2f$clsx$2f$dist$2f$clsx$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])("scroll-mt-24 border-t border-border-light/60 bg-gradient-to-b from-bg-light via-bg-light/98 to-bg-light py-14 sm:py-20", "dark:border-border-dark/60 dark:from-bg-dark dark:via-bg-dark/98 dark:to-bg-dark", className),
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$myPortfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "mb-8",
@@ -28,8 +28,31 @@ function Section({ id, title, eyebrow, children, className }) {
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$myPortfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                        className: "mt-2 inline-block border-b-2 border-accent pb-1 text-2xl font-semibold text-text-light dark:text-text-dark sm:text-3xl",
-                        children: title
+                        className: "mt-2 inline-flex items-baseline gap-2 text-2xl font-semibold tracking-tight text-text-light dark:text-text-dark sm:text-3xl",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$myPortfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                            className: "relative",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$myPortfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    className: "relative z-10",
+                                    children: title
+                                }, void 0, false, {
+                                    fileName: "[project]/myPortfolio/app/components/Section.tsx",
+                                    lineNumber: 36,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$myPortfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    className: "pointer-events-none absolute bottom-0 left-0 right-0 h-[2px] rounded-full bg-gradient-to-r from-accent/80 via-emerald-400/60 to-transparent"
+                                }, void 0, false, {
+                                    fileName: "[project]/myPortfolio/app/components/Section.tsx",
+                                    lineNumber: 37,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/myPortfolio/app/components/Section.tsx",
+                            lineNumber: 35,
+                            columnNumber: 11
+                        }, this)
                     }, void 0, false, {
                         fileName: "[project]/myPortfolio/app/components/Section.tsx",
                         lineNumber: 34,

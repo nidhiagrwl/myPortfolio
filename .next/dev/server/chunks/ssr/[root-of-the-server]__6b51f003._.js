@@ -100,35 +100,115 @@ __turbopack_context__.s([
     ()=>ThemeToggle
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$myPortfolio$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/myPortfolio/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$myPortfolio$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/myPortfolio/node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$myPortfolio$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/myPortfolio/node_modules/framer-motion/dist/es/components/AnimatePresence/index.mjs [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$myPortfolio$2f$app$2f$components$2f$ThemeProvider$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/myPortfolio/app/components/ThemeProvider.tsx [app-ssr] (ecmascript)");
 "use client";
 ;
 ;
+;
 function ThemeToggle() {
     const { theme, toggle } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$myPortfolio$2f$app$2f$components$2f$ThemeProvider$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useTheme"])();
+    const isDark = theme === "dark";
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$myPortfolio$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
         type: "button",
         onClick: toggle,
         "aria-label": "Toggle light and dark mode",
-        className: "inline-flex h-9 w-9 items-center justify-center rounded-full border border-border-light bg-surface-light text-xs text-text-mutedLight shadow-sm transition hover:border-accent hover:bg-accent-soft hover:text-accent dark:border-accent dark:bg-surface-dark dark:text-text-dark dark:hover:bg-accent-soft",
-        children: theme === "light" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$myPortfolio$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-            "aria-hidden": "true",
-            children: "☾"
-        }, void 0, false, {
-            fileName: "[project]/myPortfolio/app/components/ThemeToggle.tsx",
-            lineNumber: 15,
-            columnNumber: 28
-        }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$myPortfolio$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-            "aria-hidden": "true",
-            children: "☼"
-        }, void 0, false, {
-            fileName: "[project]/myPortfolio/app/components/ThemeToggle.tsx",
-            lineNumber: 15,
-            columnNumber: 64
-        }, this)
-    }, void 0, false, {
+        className: "relative flex h-9 w-16 items-center rounded-full border border-border-light bg-surface-light/90 px-1 text-xs text-text-mutedLight shadow-sm transition-colors hover:border-accent hover:bg-accent-soft dark:border-border-dark dark:bg-surface-dark/90 dark:text-text-dark",
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$myPortfolio$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$myPortfolio$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
+                layout: true,
+                style: {
+                    x: isDark ? 28 : 0
+                },
+                transition: {
+                    type: "spring",
+                    stiffness: 320,
+                    damping: 26
+                },
+                className: "relative flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-tr from-accent to-emerald-400 shadow-[0_0_0_1px_rgba(16,185,129,0.4)]",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$myPortfolio$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$myPortfolio$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AnimatePresence"], {
+                    initial: false,
+                    mode: "wait",
+                    children: isDark ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$myPortfolio$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$myPortfolio$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].span, {
+                        initial: {
+                            opacity: 0,
+                            rotate: -45,
+                            scale: 0.7
+                        },
+                        animate: {
+                            opacity: 1,
+                            rotate: 0,
+                            scale: 1
+                        },
+                        exit: {
+                            opacity: 0,
+                            rotate: 45,
+                            scale: 0.7
+                        },
+                        transition: {
+                            duration: 0.22
+                        },
+                        "aria-hidden": "true",
+                        children: "☾"
+                    }, "moon", false, {
+                        fileName: "[project]/myPortfolio/app/components/ThemeToggle.tsx",
+                        lineNumber: 25,
+                        columnNumber: 13
+                    }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$myPortfolio$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$myPortfolio$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].span, {
+                        initial: {
+                            opacity: 0,
+                            rotate: 45,
+                            scale: 0.7
+                        },
+                        animate: {
+                            opacity: 1,
+                            rotate: 0,
+                            scale: 1
+                        },
+                        exit: {
+                            opacity: 0,
+                            rotate: -45,
+                            scale: 0.7
+                        },
+                        transition: {
+                            duration: 0.22
+                        },
+                        "aria-hidden": "true",
+                        children: "☼"
+                    }, "sun", false, {
+                        fileName: "[project]/myPortfolio/app/components/ThemeToggle.tsx",
+                        lineNumber: 36,
+                        columnNumber: 13
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/myPortfolio/app/components/ThemeToggle.tsx",
+                    lineNumber: 23,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/myPortfolio/app/components/ThemeToggle.tsx",
+                lineNumber: 17,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$myPortfolio$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$myPortfolio$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].span, {
+                "aria-hidden": "true",
+                className: "pointer-events-none absolute inset-0 rounded-full",
+                animate: {
+                    boxShadow: isDark ? "0 0 18px rgba(16,185,129,0.4)" : "0 0 12px rgba(56,189,248,0.25)"
+                },
+                transition: {
+                    duration: 0.25
+                }
+            }, void 0, false, {
+                fileName: "[project]/myPortfolio/app/components/ThemeToggle.tsx",
+                lineNumber: 49,
+                columnNumber: 7
+            }, this)
+        ]
+    }, void 0, true, {
         fileName: "[project]/myPortfolio/app/components/ThemeToggle.tsx",
-        lineNumber: 9,
+        lineNumber: 11,
         columnNumber: 5
     }, this);
 }

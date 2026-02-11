@@ -10,18 +10,10 @@ import { Container } from "./components/Container";
 import { Card } from "./components/Card";
 import { Badge } from "./components/Badge";
 import { SimpleModal } from "./components/Modal";
-
-const fadeInUp = {
-  initial: { opacity: 0, y: 12 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.4, ease: "easeOut" }
-};
-
-const fadeIn = {
-  initial: { opacity: 0 },
-  animate: { opacity: 1 },
-  transition: { duration: 0.35, ease: "easeOut" }
-};
+import { AnimatedSection } from "./components/AnimatedSection";
+import { fadeIn, fadeInUp, staggerContainer } from "./components/motionPresets";
+import { ProjectCard } from "./components/ProjectCard";
+import { useTheme } from "./components/ThemeProvider";
 
 export default function HomePage() {
   const [resumeOpen, setResumeOpen] = useState(false);
@@ -126,16 +118,18 @@ function Hero({ onViewResume }: { onViewResume: () => void }) {
   return (
     <section
       id="hero"
-      className="border-b border-border-light/70 bg-gradient-to-b from-bg-light to-transparent py-16 dark:border-border-dark/60 dark:from-bg-dark/40 sm:py-20"
+      className="relative overflow-hidden border-b border-border-light/70 bg-hero-mesh py-16 dark:border-border-dark/60 sm:py-20"
     >
+      <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-emerald-500/12 blur-3xl" />
+      <div className="pointer-events-none absolute bottom-[-6rem] left-[-4rem] h-64 w-64 rounded-full bg-sky-500/10 blur-3xl" />
       <Container>
         <motion.div
           className="grid gap-10 md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] md:items-center"
-          initial={fadeInUp.initial}
-          animate={fadeInUp.animate}
-          transition={fadeInUp.transition}
+          variants={staggerContainer(0.08)}
+          initial="hidden"
+          animate="visible"
         >
-          <div>
+          <motion.div variants={fadeInUp}>
             <Badge>Available for senior backend roles &amp; consulting</Badge>
             <h1 className="mt-6 text-3xl font-semibold leading-tight sm:text-4xl lg:text-5xl">
               Nidhi Agrawal
@@ -150,19 +144,32 @@ function Hero({ onViewResume }: { onViewResume: () => void }) {
               what actually moves the needle.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <button
+              <motion.button
                 type="button"
                 onClick={onViewResume}
-                className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-2.5 text-sm font-medium text-white shadow-subtle hover:bg-emerald-600"
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: "0 10px 30px rgba(16, 185, 129, 0.4)",
+                  transition: { duration: 0.2 }
+                }}
+                whileTap={{ scale: 0.98 }}
+                className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-2.5 text-sm font-medium text-white shadow-subtle transition-all duration-200"
               >
                 View Resume
-              </button>
-              <a
+              </motion.button>
+              <motion.a
                 href="#contact"
-                className="inline-flex items-center justify-center rounded-full border border-border-light bg-surface-light px-6 py-2.5 text-sm font-medium text-text-light hover:bg-slate-100 dark:border-border-dark dark:bg-surface-dark dark:text-text-dark dark:hover:bg-slate-800"
+                whileHover={{
+                  scale: 1.05,
+                  y: -2,
+                  boxShadow: "0 8px 20px rgba(0, 0, 0, 0.15)",
+                  transition: { duration: 0.2 }
+                }}
+                whileTap={{ scale: 0.98 }}
+                className="inline-flex items-center justify-center rounded-full border border-border-light bg-surface-light px-6 py-2.5 text-sm font-medium text-text-light transition-all duration-200 hover:bg-slate-100 dark:border-border-dark dark:bg-surface-dark dark:text-text-dark dark:hover:bg-slate-800"
               >
                 Contact Me
-              </a>
+              </motion.a>
             </div>
             <div className="mt-6 flex flex-wrap gap-3 text-xs text-text-mutedLight dark:text-text-mutedDark">
               <span>Backend-heavy · Java / Spring · Integrations · AI features</span>
@@ -196,15 +203,18 @@ function Hero({ onViewResume }: { onViewResume: () => void }) {
                 />
               </div>
             </div>
-          </div>
+          </motion.div>
           <motion.div
             className="md:justify-self-end"
-            initial={fadeIn.initial}
-            animate={fadeIn.animate}
-            transition={{ ...fadeIn.transition, delay: 0.1 }}
+            variants={fadeIn}
+            transition={{ duration: 0.5, delay: 0.12, ease: [0.24, 1, 0.32, 1] }}
           >
             <div className="flex flex-col items-center gap-5">
-              <div className="relative">
+              <motion.div
+                className="relative"
+                animate={{ y: [0, -6, 0] }}
+                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+              >
                 <div className="rounded-full bg-gradient-to-tr from-accent to-emerald-500 p-[3px]">
                   <img
                     src="/profile.jpeg"
@@ -212,7 +222,7 @@ function Hero({ onViewResume }: { onViewResume: () => void }) {
                     className="h-32 w-32 rounded-full border border-border-light bg-surface-light object-cover transition-transform duration-300 ease-out hover:scale-[1.03] dark:border-border-dark dark:bg-surface-dark sm:h-40 sm:w-40"
                   />
                 </div>
-              </div>
+              </motion.div>
               <Card className="w-full max-w-sm p-4 text-sm">
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-text-mutedLight dark:text-text-mutedDark">
                   Quick facts
@@ -252,12 +262,7 @@ function Hero({ onViewResume }: { onViewResume: () => void }) {
 
 function About() {
   return (
-    <motion.div
-      initial={fadeInUp.initial}
-      whileInView={fadeInUp.animate}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={fadeInUp.transition}
-    >
+    <AnimatedSection>
       <Card className="p-5 sm:p-6">
         <p className="text-sm leading-relaxed text-text-mutedLight dark:text-text-mutedDark">
           I am a senior backend-focused engineer with <strong>5.5+ years</strong> of experience
@@ -278,91 +283,298 @@ function About() {
           maintainable systems.
         </p>
       </Card>
-    </motion.div>
+    </AnimatedSection>
+  );
+}
+
+function TechChip({
+  label,
+  icon,
+  colors
+}: {
+  label: string;
+  icon?: string;
+  colors: {
+    bgLight: string;
+    bgDark: string;
+    borderLight: string;
+    borderDark: string;
+    textLight: string;
+    textDark: string;
+  };
+}) {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
+  const bg = isDark ? colors.bgDark : colors.bgLight;
+  const border = isDark ? colors.borderDark : colors.borderLight;
+  const text = isDark ? colors.textDark : colors.textLight;
+
+  return (
+    <motion.span
+      whileHover={{
+        y: -3,
+        scale: 1.05,
+        transition: { duration: 0.2, ease: "easeOut" }
+      }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
+      className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium backdrop-blur-sm transition-all duration-200"
+      style={{
+        backgroundColor: bg,
+        border: `1px solid ${border}`,
+        color: text,
+        boxShadow: "0 1px 2px rgba(0,0,0,0.05)"
+      }}
+      onMouseEnter={(e) => {
+        const el = e.currentTarget;
+        el.style.boxShadow = `0 4px 12px ${border}, 0 0 0 1px ${border}`;
+      }}
+      onMouseLeave={(e) => {
+        const el = e.currentTarget;
+        el.style.boxShadow = "0 1px 2px rgba(0,0,0,0.05)";
+      }}
+    >
+      {icon && (
+        <span aria-hidden="true" className="text-[0.8rem]">
+          {icon}
+        </span>
+      )}
+      <span>{label}</span>
+    </motion.span>
   );
 }
 
 function Skills() {
+  // Color mapping for tech chips - subtle tints with matching borders
+  const getTechChipColors = (label: string) => {
+    const lower = label.toLowerCase();
+    
+    // Programming Languages - Blue tones
+    if (lower.includes("java") || lower.includes("kotlin")) {
+      return {
+        bgLight: "rgba(59, 130, 246, 0.1)", // blue-500/10
+        bgDark: "rgba(59, 130, 246, 0.15)",
+        borderLight: "rgba(59, 130, 246, 0.4)",
+        borderDark: "rgba(59, 130, 246, 0.5)",
+        textLight: "#1e40af", // blue-800
+        textDark: "#93c5fd" // blue-300
+      };
+    }
+    
+    // Frameworks - Green tones
+    if (lower.includes("spring") || lower.includes("hibernate") || lower.includes("jpa")) {
+      return {
+        bgLight: "rgba(16, 185, 129, 0.1)", // emerald-500/10
+        bgDark: "rgba(16, 185, 129, 0.15)",
+        borderLight: "rgba(16, 185, 129, 0.4)",
+        borderDark: "rgba(16, 185, 129, 0.5)",
+        textLight: "#065f46", // emerald-800
+        textDark: "#6ee7b7" // emerald-300
+      };
+    }
+    
+    // Cloud & DevOps - Cyan tones
+    if (lower.includes("aws") || lower.includes("gcp") || lower.includes("docker") || lower.includes("maven")) {
+      return {
+        bgLight: "rgba(6, 182, 212, 0.1)", // cyan-500/10
+        bgDark: "rgba(6, 182, 212, 0.15)",
+        borderLight: "rgba(6, 182, 212, 0.4)",
+        borderDark: "rgba(6, 182, 212, 0.5)",
+        textLight: "#155e75", // cyan-800
+        textDark: "#67e8f9" // cyan-300
+      };
+    }
+    
+    // Integrations - Purple tones
+    if (lower.includes("google") || lower.includes("microsoft") || lower.includes("zoom") || lower.includes("dyte") || lower.includes("daily")) {
+      return {
+        bgLight: "rgba(168, 85, 247, 0.1)", // purple-500/10
+        bgDark: "rgba(168, 85, 247, 0.15)",
+        borderLight: "rgba(168, 85, 247, 0.4)",
+        borderDark: "rgba(168, 85, 247, 0.5)",
+        textLight: "#6b21a8", // purple-800
+        textDark: "#c4b5fd" // purple-300
+      };
+    }
+    
+    // ATS - Orange tones
+    if (lower.includes("lever") || lower.includes("greenhouse") || lower.includes("recruitee")) {
+      return {
+        bgLight: "rgba(249, 115, 22, 0.1)", // orange-500/10
+        bgDark: "rgba(249, 115, 22, 0.15)",
+        borderLight: "rgba(249, 115, 22, 0.4)",
+        borderDark: "rgba(249, 115, 22, 0.5)",
+        textLight: "#9a3412", // orange-800
+        textDark: "#fdba74" // orange-300
+      };
+    }
+    
+    // Databases - Indigo tones
+    if (lower.includes("mysql") || lower.includes("postgresql") || lower.includes("oracle") || lower.includes("elasticsearch")) {
+      return {
+        bgLight: "rgba(99, 102, 241, 0.1)", // indigo-500/10
+        bgDark: "rgba(99, 102, 241, 0.15)",
+        borderLight: "rgba(99, 102, 241, 0.4)",
+        borderDark: "rgba(99, 102, 241, 0.5)",
+        textLight: "#3730a3", // indigo-800
+        textDark: "#a5b4fc" // indigo-300
+      };
+    }
+    
+    // Tools - Teal tones
+    if (lower.includes("git") || lower.includes("postman") || lower.includes("intellij") || lower.includes("eclipse") || lower.includes("code") || lower.includes("swagger") || lower.includes("sentry")) {
+      return {
+        bgLight: "rgba(20, 184, 166, 0.1)", // teal-500/10
+        bgDark: "rgba(20, 184, 166, 0.15)",
+        borderLight: "rgba(20, 184, 166, 0.4)",
+        borderDark: "rgba(20, 184, 166, 0.5)",
+        textLight: "#134e4a", // teal-800
+        textDark: "#5eead4" // teal-300
+      };
+    }
+    
+    // Testing - Pink tones
+    if (lower.includes("junit") || lower.includes("test")) {
+      return {
+        bgLight: "rgba(236, 72, 153, 0.1)", // pink-500/10
+        bgDark: "rgba(236, 72, 153, 0.15)",
+        borderLight: "rgba(236, 72, 153, 0.4)",
+        borderDark: "rgba(236, 72, 153, 0.5)",
+        textLight: "#9f1239", // pink-800
+        textDark: "#f9a8d4" // pink-300
+      };
+    }
+    
+    // Soft Skills - Amber tones
+    return {
+      bgLight: "rgba(245, 158, 11, 0.1)", // amber-500/10
+      bgDark: "rgba(245, 158, 11, 0.15)",
+      borderLight: "rgba(245, 158, 11, 0.4)",
+      borderDark: "rgba(245, 158, 11, 0.5)",
+      textLight: "#78350f", // amber-800
+      textDark: "#fcd34d" // amber-300
+    };
+  };
+
   const groups = [
     {
       title: "Programming Languages",
-      items: ["Java 8/17/21", "Kotlin"]
+      items: [
+        { label: "Java 8/17/21", icon: "☕" },
+        { label: "Kotlin", icon: "🟣" }
+      ]
     },
     {
       title: "Frameworks",
-      items: ["Spring Boot", "Spring Cloud", "Hibernate", "JPA", "Spring Security"]
+      items: [
+        { label: "Spring Boot", icon: "🌱" },
+        { label: "Spring Cloud", icon: "☁️" },
+        { label: "Hibernate", icon: "⚙️" },
+        { label: "JPA", icon: "📄" },
+        { label: "Spring Security", icon: "🔐" }
+      ]
     },
     {
       title: "Cloud & DevOps",
       items: [
-        "AWS (S3, SQS, SNS, CloudFront, Rekognition)",
-        "GCP (SSO, Calendar)",
-        "Docker",
-        "Maven"
+        { label: "AWS (S3, SQS, SNS, CloudFront, Rekognition)", icon: "☁️" },
+        { label: "GCP (SSO, Calendar)", icon: "☁️" },
+        { label: "Docker", icon: "🐳" },
+        { label: "Maven", icon: "📦" }
       ]
     },
     {
       title: "Integrations",
       items: [
-        "Google Meet",
-        "Google Calendar",
-        "Microsoft Teams",
-        "Microsoft Graph API",
-        "Zoom",
-        "Dyte",
-        "Daily.co"
+        { label: "Google Meet", icon: "🎥" },
+        { label: "Google Calendar", icon: "📅" },
+        { label: "Microsoft Teams", icon: "💬" },
+        { label: "Microsoft Graph API", icon: "📡" },
+        { label: "Zoom", icon: "🎦" },
+        { label: "Dyte", icon: "🧩" },
+        { label: "Daily.co", icon: "🧩" }
       ]
     },
     {
       title: "ATS Integrations",
-      items: ["Lever", "Greenhouse", "Recruitee"]
+      items: [
+        { label: "Lever", icon: "⚙️" },
+        { label: "Greenhouse", icon: "🌿" },
+        { label: "Recruitee", icon: "👥" }
+      ]
     },
     {
       title: "Architectures",
-      items: ["Microservices", "Monolithic", "Event-Driven Architecture"]
+      items: [
+        { label: "Microservices", icon: "🧱" },
+        { label: "Monolithic", icon: "🏛️" },
+        { label: "Event-Driven Architecture", icon: "📡" }
+      ]
     },
     {
       title: "Databases",
-      items: ["MySQL", "Elasticsearch", "PostgreSQL", "Oracle"]
+      items: [
+        { label: "MySQL", icon: "🐬" },
+        { label: "Elasticsearch", icon: "🔍" },
+        { label: "PostgreSQL", icon: "🐘" },
+        { label: "Oracle", icon: "🏺" }
+      ]
     },
     {
       title: "Tools",
-      items: ["Git", "Postman", "IntelliJ", "Eclipse", "VS Code", "Swagger/OpenAPI", "Sentry"]
+      items: [
+        { label: "Git", icon: "🌱" },
+        { label: "Postman", icon: "📮" },
+        { label: "IntelliJ", icon: "💡" },
+        { label: "Eclipse", icon: "🌘" },
+        { label: "VS Code", icon: "⌨️" },
+        { label: "Swagger/OpenAPI", icon: "📜" },
+        { label: "Sentry", icon: "🛰️" }
+      ]
     },
     {
       title: "Testing",
-      items: ["JUnit"]
+      items: [{ label: "JUnit", icon: "✅" }]
     },
     {
       title: "Soft Skills",
-      items: ["Client Communication", "Ownership", "Problem Solving", "Cross-Functional Collaboration"]
+      items: [
+        { label: "Client Communication", icon: "💬" },
+        { label: "Ownership", icon: "🎯" },
+        { label: "Problem Solving", icon: "🧠" },
+        { label: "Cross-Functional Collaboration", icon: "🤝" }
+      ]
     }
   ];
 
   return (
     <motion.div
-      initial={fadeInUp.initial}
-      whileInView={fadeInUp.animate}
+      variants={staggerContainer(0.08)}
+      initial="hidden"
+      whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
-      transition={fadeInUp.transition}
     >
       <div className="grid gap-4 sm:grid-cols-2">
         {groups.map(group => (
-          <Card key={group.title} className="p-4 sm:p-5">
-            <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-text-mutedLight dark:text-text-mutedDark">
-              {group.title}
-            </h3>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {group.items.map(item => (
-                <span
-                  key={item}
-                  className="rounded-full border border-border-light bg-surface-light px-3 py-1 text-xs text-text-mutedLight transition hover:border-accent hover:bg-accent-soft hover:text-text-light dark:border-border-dark dark:bg-surface-dark dark:text-text-mutedDark dark:hover:border-accent"
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
-          </Card>
+          <motion.div key={group.title} variants={fadeInUp}>
+            <Card className="p-4 sm:p-5">
+              <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-text-mutedLight dark:text-text-mutedDark">
+                {group.title}
+              </h3>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {group.items.map(item => {
+                  const colors = getTechChipColors(item.label);
+                  return (
+                    <TechChip
+                      key={item.label}
+                      label={item.label}
+                      icon={item.icon}
+                      colors={colors}
+                    />
+                  );
+                })}
+              </div>
+            </Card>
+          </motion.div>
         ))}
       </div>
     </motion.div>
@@ -373,12 +585,7 @@ function Experience() {
   return (
     <div className="space-y-6">
       {/* Company 1 – JobTwine (detailed ownership-focused view) */}
-      <motion.div
-        initial={fadeInUp.initial}
-        whileInView={fadeInUp.animate}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={fadeInUp.transition}
-      >
+      <AnimatedSection>
         <Card className="p-5 sm:p-6">
         <div className="mb-3 flex items-center gap-2">
           <BriefcaseIcon />
@@ -463,15 +670,10 @@ function Experience() {
           </li>
         </ul>
         </Card>
-      </motion.div>
+      </AnimatedSection>
 
       {/* Company 2 – Previous Organization #1 */}
-      <motion.div
-        initial={fadeInUp.initial}
-        whileInView={fadeInUp.animate}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ ...fadeInUp.transition, delay: 0.05 }}
-      >
+      <AnimatedSection>
         <Card className="p-5 sm:p-6">
         <div className="mb-3 flex items-center gap-2">
           <BriefcaseIcon />
@@ -516,15 +718,10 @@ function Experience() {
             </li>
           </ul>
         </Card>
-      </motion.div>
+      </AnimatedSection>
 
       {/* Company 3 – Previous Organization #2 (concise but strong) */}
-      <motion.div
-        initial={fadeInUp.initial}
-        whileInView={fadeInUp.animate}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ ...fadeInUp.transition, delay: 0.05 }}
-      >
+      <AnimatedSection>
         <Card className="p-5 sm:p-6">
           <div className="mb-3 flex items-center gap-2">
             <BriefcaseIcon />
@@ -561,7 +758,7 @@ function Experience() {
             </li>
           </ul>
         </Card>
-      </motion.div>
+      </AnimatedSection>
     </div>
   );
 }
@@ -576,7 +773,7 @@ function Projects() {
         "Designed and implemented an OTP-based self-demo flow that lets prospects explore a safe, preconfigured environment within minutes.",
       architecture:
         "Backend-first flow with secure, short-lived OTPs, scoped demo tenants, and configurable feature flags; integrated with marketing attribution.",
-      stack: "Java · Spring Boot · MySQL · Redis · OTP service · React frontend",
+      stack: ["Java", "Spring Boot", "MySQL", "Redis", "OTP service", "React frontend"],
       impact:
         "Demoed to 50+ stakeholders and contributed to a ~20% increase in lead-to-opportunity conversion for inbound interest."
     },
@@ -588,7 +785,15 @@ function Projects() {
         "A unified ATS integration layer with clean domain abstraction, mapping jobs, candidates, stages, and feedback to a consistent internal model.",
       architecture:
         "SOLID-driven modular design with strategy-based connectors per ATS (Lever, Greenhouse, Recruitee), robust retry & dead-letter handling, and observability around syncs.",
-      stack: "Java · Spring Boot · REST · Webhooks · MySQL · Message queues · Observability stack",
+      stack: [
+        "Java",
+        "Spring Boot",
+        "REST",
+        "Webhooks",
+        "MySQL",
+        "Message queues",
+        "Observability stack"
+      ],
       impact:
         "Enabled multi-ATS support that was instrumental in winning and onboarding enterprise clients like Brillio and Meesho."
     },
@@ -600,7 +805,7 @@ function Projects() {
         "An AI-powered feedback generator that consumes call transcripts and structured signals to draft concise, structured interview feedback.",
       architecture:
         "Async pipeline: speech-to-text → feature extraction → LLM prompt templating → human-in-the-loop editing; optimized prompts for speed and consistency.",
-      stack: "Deepgram · LLM APIs · Java services · Async workers · React UI",
+      stack: ["Deepgram", "LLM APIs", "Java services", "Async workers", "React UI"],
       impact:
         "Delivered feedback drafts within ~1 minute of interview end, substantially improving interviewer efficiency and response times."
     },
@@ -612,7 +817,13 @@ function Projects() {
         "A real-time copilot that surfaces context-aware suggestions, follow-up questions, and evaluation hints during live interviews.",
       architecture:
         "Streaming architecture consuming live transcript events, maintaining interview context, and serving low-latency AI suggestions via websockets.",
-      stack: "WebSockets · LLM APIs · Java backend · React frontend · Observability tooling",
+      stack: [
+        "WebSockets",
+        "LLM APIs",
+        "Java backend",
+        "React frontend",
+        "Observability tooling"
+      ],
       impact:
         "Improved interview structure and signal quality, especially for less-experienced interviewers, while keeping cognitive load low."
     }
@@ -621,50 +832,7 @@ function Projects() {
   return (
     <div className="grid gap-5 md:grid-cols-2">
       {projects.map((project, index) => (
-        <motion.div
-          key={project.title}
-          initial={fadeInUp.initial}
-          whileInView={fadeInUp.animate}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ ...fadeInUp.transition, delay: index * 0.04 }}
-        >
-          <Card className="flex flex-col p-5 sm:p-6">
-          <div className="mb-3 flex items-center gap-2">
-            <ProjectIcon />
-            <h3 className="text-sm font-semibold">{project.title}</h3>
-          </div>
-          <p className="mt-2 text-xs uppercase tracking-[0.18em] text-text-mutedLight dark:text-text-mutedDark">
-            Problem
-          </p>
-          <p className="mt-1 text-sm text-text-mutedLight dark:text-text-mutedDark">
-            {project.problem}
-          </p>
-          <p className="mt-3 text-xs uppercase tracking-[0.18em] text-text-mutedLight dark:text-text-mutedDark">
-            What I built
-          </p>
-          <p className="mt-1 text-sm text-text-mutedLight dark:text-text-mutedDark">
-            {project.built}
-          </p>
-          <p className="mt-3 text-xs uppercase tracking-[0.18em] text-text-mutedLight dark:text-text-mutedDark">
-            Architecture
-          </p>
-          <p className="mt-1 text-sm text-text-mutedLight dark:text-text-mutedDark">
-            {project.architecture}
-          </p>
-          <p className="mt-3 text-xs uppercase tracking-[0.18em] text-text-mutedLight dark:text-text-mutedDark">
-            Tech stack
-          </p>
-          <p className="mt-1 text-sm text-text-mutedLight dark:text-text-mutedDark">
-            {project.stack}
-          </p>
-          <p className="mt-3 text-xs uppercase tracking-[0.18em] text-text-mutedLight dark:text-text-mutedDark">
-            Business impact
-          </p>
-          <p className="mt-1 text-sm text-text-mutedLight dark:text-text-mutedDark">
-            {project.impact}
-          </p>
-        </Card>
-        </motion.div>
+        <ProjectCard key={project.title} project={project as any} index={index} />
       ))}
     </div>
   );
@@ -673,6 +841,7 @@ function Projects() {
 function Awards({ onOpenImage }: { onOpenImage: (src: string | null) => void }) {
   return (
     <div className="space-y-5">
+      <AnimatedSection>
         <Card className="p-5 sm:p-6">
         <div className="mb-3 flex items-center gap-2">
           <AwardIcon />
@@ -699,8 +868,10 @@ function Awards({ onOpenImage }: { onOpenImage: (src: string | null) => void }) 
           </li>
         </ul>
       </Card>
+      </AnimatedSection>
 
-      <div>
+      <AnimatedSection>
+        <div>
         <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-text-mutedLight dark:text-text-mutedDark">
           Appreciation snapshots
         </p>
@@ -724,14 +895,16 @@ function Awards({ onOpenImage }: { onOpenImage: (src: string | null) => void }) 
         <p className="mt-2 text-xs text-text-mutedLight dark:text-text-mutedDark">
           Replace these placeholders with actual screenshots from email, Slack, or internal tools.
         </p>
-      </div>
+        </div>
+      </AnimatedSection>
     </div>
   );
 }
 
 function ResumeSection({ onOpen }: { onOpen: () => void }) {
   return (
-    <Card className="flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
+    <AnimatedSection>
+      <Card className="flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
       <div>
         <div className="mb-1 flex items-center gap-2">
           <ResumeIcon />
@@ -758,13 +931,15 @@ function ResumeSection({ onOpen }: { onOpen: () => void }) {
           Download PDF
         </a>
       </div>
-    </Card>
+      </Card>
+    </AnimatedSection>
   );
 }
 
 function Contact() {
   return (
-    <Card className="p-5 sm:p-6">
+    <AnimatedSection>
+      <Card className="p-5 sm:p-6">
       <div className="mb-2 flex items-center gap-2">
         <MailIcon />
         <h3 className="text-sm font-semibold">Let&apos;s talk</h3>
@@ -797,7 +972,8 @@ function Contact() {
           />
         </div>
       </div>
-    </Card>
+      </Card>
+    </AnimatedSection>
   );
 }
 
