@@ -10,41 +10,31 @@ const SECTION_IDS = [
   "projects",
   "awards",
   "resume",
-  "contact"
+  "contact",
 ];
 
 export function useActiveSection() {
-  const [activeId, setActiveId] = useState<string>("hero");
+  const [activeId, setActiveId] = useState("hero");
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      entries => {
-        const visible = entries.filter(entry => entry.isIntersecting);
-        if (!visible.length) return;
+    const handleScroll = () => {
+      const scrollPos = window.scrollY + window.innerHeight / 2;
+      let current = "hero";
 
-        const topMost = visible.reduce((top, entry) => {
-          const topOffset = (top.target as HTMLElement).offsetTop;
-          const entryOffset = (entry.target as HTMLElement).offsetTop;
-          return entryOffset < topOffset ? entry : top;
-        });
-
-        setActiveId((topMost.target as HTMLElement).id);
-      },
-      {
-        root: null,
-        rootMargin: "-55% 0px -40% 0px",
-        threshold: 0.2
+      for (const id of SECTION_IDS) {
+        const el = document.getElementById(id);
+        if (el && el.offsetTop <= scrollPos) {
+          current = id;
+        }
       }
-    );
 
-    SECTION_IDS.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
+      setActiveId(current);
+    };
 
-    return () => observer.disconnect();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // initial update
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return activeId;
 }
-

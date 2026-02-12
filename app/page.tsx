@@ -138,7 +138,7 @@ function Hero({ onViewResume }: { onViewResume: () => void }) {
               Senior Software Engineer
             </p>
             <p className="mt-5 max-w-xl text-sm text-text-mutedLight dark:text-text-mutedDark sm:text-base">
-              Backend-heavy engineer with 5.5+ years of experience owning systems end-to-end — from
+              Backend-focused engineer with 5.5+ years of experience owning systems end-to-end — from
               architecture and integrations to production operations. I design calm, reliable
               systems that scale, and I partner directly with clients, product, and business to ship
               what actually moves the needle.
@@ -172,7 +172,7 @@ function Hero({ onViewResume }: { onViewResume: () => void }) {
               </motion.a>
             </div>
             <div className="mt-6 flex flex-wrap gap-3 text-xs text-text-mutedLight dark:text-text-mutedDark">
-              <span>Backend-heavy · Java / Spring · Integrations · AI features</span>
+              <span>Backend-focused · Java / Spring · Integrations · AI features</span>
               <span className="hidden h-1 w-1 align-middle rounded-full bg-text-mutedLight sm:inline-block" />
               <span>Client-facing · Owns ambiguity · Leads cross-functional work</span>
             </div>
