@@ -226,19 +226,19 @@ function Hero({ onViewResume }: { onViewResume: () => void }) {
                   <div>
                     <dt className="text-text-mutedLight dark:text-text-mutedDark">Focus</dt>
                     <dd className="font-medium text-text-light dark:text-text-dark">
-                      Backend &amp; integrations
+                    Backend Architecture &amp; Systems
                     </dd>
                   </div>
                   <div>
                     <dt className="text-text-mutedLight dark:text-text-mutedDark">Current</dt>
                     <dd className="font-medium text-text-light dark:text-text-dark">
-                      Senior Engineer @ JobTwine
+                    Senior Software Engineer
                     </dd>
                   </div>
                   <div>
                     <dt className="text-text-mutedLight dark:text-text-mutedDark">Strength</dt>
                     <dd className="font-medium text-text-light dark:text-text-dark">
-                      Ownership &amp; client leadership
+                    Problem Solving &amp; Execution Excellence
                     </dd>
                   </div>
                 </dl>
